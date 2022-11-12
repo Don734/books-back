@@ -8,7 +8,7 @@
 
 @section('content')
     <div class="actions-col col-14 mb-3">
-        <a href="#" class="btn btn-success" role="button" aria-pressed="true">Add</a>
+        <a href="{{route('products.create')}}" class="btn btn-success" role="button" aria-pressed="true">Add</a>
     </div>
     <table class="table table-striped data-table" id="products_table">
         @include('admin.partials.table.head',[
@@ -37,10 +37,6 @@
             </tr>
         </tbody>
     </table>
-@stop
-
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
 @stop
 
 @section('js')

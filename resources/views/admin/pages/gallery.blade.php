@@ -25,5 +25,3 @@
 @section('js')
     <script></script>
 @stop
-
-@section('plugins.Datatables', true)

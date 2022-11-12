@@ -331,11 +331,6 @@ return [
             'url'  => 'admin/reviews',
             'icon' => 'fas fa-comments',
         ],
-        [
-            'text' => 'gallery',
-            'url'  => 'admin/gallery',
-            'icon' => 'fas fa-images',
-        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
@@ -505,6 +500,21 @@ return [
                     'type' => 'js',
                     'asset' => false,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js',
+                ],
+            ],
+        ],
+        'Summernote' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/summernote/summernote-bs4.min.js',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'vendor/summernote/summernote-bs4.min.css',
                 ],
             ],
         ],

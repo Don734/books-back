@@ -23,18 +23,21 @@
             ]
         ])
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>ART123/45</td>
-                <td>Product 1</td>
-                <td>1000</td>
-                <td>5</td>
-                <td>Active</td>
-                <td>
-                    <a href="#" class="btn btn-warning btn-sm" role="button" aria-pressed="true">edit</a>
-                    <a href="#" class="btn btn-danger btn-sm" role="button" aria-pressed="true">remove</a>
-                </td>
-            </tr>
+            @foreach ($products as $product)
+                <tr>
+                    <td>{{ $loop->index + 1 }}</td>
+                    <td>{{ $product->barcode }}</td>
+                    <td>{{ $product->title }}</td>
+                    <td>{{ $product->price }}</td>
+                    <td>{{ $product->quantity}}</td>
+                    <td>{{ $product->is_active ? 'Active' : 'Not Active' }}</td>
+                    <td>
+                        <a href="{{route('products.show', ['id' => $product->id])}}" class="btn btn-info btn-sm" role="button" aria-pressed="true">show</a>
+                        <a href="{{route('products.edit', ['id' => $product->id])}}" class="btn btn-warning btn-sm" role="button" aria-pressed="true">edit</a>
+                        <a href="{{route('products.delete', ['id' => $product->id])}}" class="btn btn-danger btn-sm" role="button" aria-pressed="true">remove</a>
+                    </td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
 @stop

@@ -12,32 +12,20 @@ class ProductHasImages extends Model
 
     protected $guarded = [];
 
-    public static function add(array $request, $product_id, $user = null)
+    public static function add($uploadFile, $product_id, $user = null)
     {
         $file = self::create([
             'product_id' => $product_id,
-            'url' => $request['url'] ?? (Arr::has($request, 'file') ? uploadFile($request['file'], 'Product/Files', $product_id) : null),
-            'name' => $request['name'] ?? (Arr::has($request, 'file') ? $request['file']->getClientOriginalName() : null),
-            'size' => $request['size'] ?? (Arr::has($request, 'file') ? $request['file']->getSize() : null),
-            'ext' => $request['ext'] ?? (Arr::has($request, 'file') ? $request['file']->extension() : null),
-            'height' => $request['height'] ?? null,
-            'width' => $request['width'] ?? null,
+            'url' => uploadFile($uploadFile, 'Product/Files', $product_id) ?? null,
+            'name' => $uploadFile->getClientOriginalName() ?? null,
+            'size' => $uploadFile->getSize() ?? null,
+            'ext' => $uploadFile->extension() ?? null,
+            'height' => getimagesize($uploadFile)[0] ?? null,
+            'width' => getimagesize($uploadFile)[1] ?? null,
             'userable_id' => $user->id ?? null,
             'userable_type' => $user ? get_class($user) : null,
         ]);
         return $file;
-    }
-
-    public function edit(array $request)
-    {
-        if (Arr::has($request, 'file')) {
-            $this->url = uploadFile($request['file'], 'Product/Files', $this->id);
-            $this->ext = $request['file']->extension() ?? $this->ext;
-        }
-
-        $this->updateColumn($request, 'url', true);
-        $this->updateColumn($request, 'ext');
-        $this->save();
     }
 
     public function userable()

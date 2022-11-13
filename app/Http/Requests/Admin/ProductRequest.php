@@ -28,9 +28,10 @@ class ProductRequest extends FormRequest
             'barcode' => 'required|string',
             'price' => 'required|numeric',
             'description' => 'nullable|string',
-            'files' => 'nullable|array',
-            'files.*.file' => 'nullable|file|mimes:jpg,png',
-            'files.*.id' => 'nullable|numeric',
+            'quantity' => 'nullable|numeric',
+            'is_active' => 'nullable|string',
+            'upload_files' => 'nullable|array',
+            'upload_files.*' => 'file|mimes:jpeg,png,jpg',
             'files_for_delete' => 'nullable|array',
             'files_for_delete.*' => 'nullable|string',
         ];

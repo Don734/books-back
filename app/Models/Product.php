@@ -17,7 +17,9 @@ class Product extends Model
         'title',
         'barcode',
         'price',
-        'description'
+        'description',
+        'quantity',
+        'is_active',
     ];
     
     public static function add(array $req)
@@ -26,7 +28,9 @@ class Product extends Model
             'title' => $req['title'],
             'barcode' => $req['barcode'],
             'price' => $req['price'],
-            'description' => $req['description'] ?? null
+            'description' => $req['description'] ?? null,
+            'quantity' => $req['quantity'],
+            'is_active' => filter_var($req['is_active'], FILTER_VALIDATE_BOOLEAN)
         ]);
 
         $product->syncFiles($req);
@@ -38,6 +42,8 @@ class Product extends Model
         $this->updateColumn($req, 'barcode');
         $this->updateColumn($req, 'price');
         $this->updateColumn($req, 'description');
+        $this->updateColumn($req, 'quantity');
+        $this->updateColumn($req, 'is_active');
         $this->save();
 
         $this->syncFiles($req);
@@ -50,18 +56,13 @@ class Product extends Model
 
     public function syncFiles(array $request, $user = null)
     {
-        if (Arr::has($request, 'files') and filled($request['files']) and is_array($request['files'])) {
-            foreach ($request['files'] as $file) {
-                if (Arr::has($file, 'id') and filled($file['id']) and $productHasImage = $this->accidentFiles()->find($file['id'])) {
-                    $productHasImage->edit($file);
-                } elseif (Arr::has($file, 'file')) {
-                    $productHasImage = ProductHasImages::add($file, $this->id, $user);
-                }
+        if (Arr::has($request, 'upload_files') and filled($request['upload_files']) and is_array($request['upload_files'])) {
+            foreach ($request['upload_files'] as $file) {
+                ProductHasImages::add($file, $this->id, $user);
             }
         }
         if (Arr::has($request, 'files_for_delete') and filled($request['files_for_delete']) and is_array($request['files_for_delete'])) {
             foreach ($request['files_for_delete'] as $file) {
-                $productHasImage = ProductHasImages::where('url', $file)->first();
                 deleteFile($file);
             }
 

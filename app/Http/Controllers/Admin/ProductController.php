@@ -15,7 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.products.list');
+        $products = Product::all();
+        return view('admin.pages.products.list', ['products' => $products]);
     }
 
     /**
@@ -36,9 +37,8 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        dd($request);
-
-        return redirect('products.index');
+        Product::add($request->all(), $request->user('web'));
+        return redirect()->route('products');
     }
 
     /**
@@ -60,7 +60,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        dd($product);
     }
 
     /**

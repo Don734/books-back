@@ -49,7 +49,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('admin.pages.products.show', ['id' => $product]);
+        return view('admin.pages.products.show', ['product' => $product]);
     }
 
     /**
@@ -60,7 +60,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        dd($product);
+        return view('admin.pages.products.edit', ['product' => $product]);
     }
 
     /**

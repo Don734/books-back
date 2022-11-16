@@ -32,9 +32,9 @@
                     <td>{{ $product->quantity}}</td>
                     <td>{{ $product->is_active ? 'Active' : 'Not Active' }}</td>
                     <td>
-                        <a href="{{route('products.show', ['id' => $product->id])}}" class="btn btn-info btn-sm" role="button" aria-pressed="true">show</a>
-                        <a href="{{route('products.edit', ['id' => $product->id])}}" class="btn btn-warning btn-sm" role="button" aria-pressed="true">edit</a>
-                        <a href="{{route('products.delete', ['id' => $product->id])}}" class="btn btn-danger btn-sm" role="button" aria-pressed="true">remove</a>
+                        <a href="{{route('products.show', ['product' => $product])}}" class="btn btn-xs btn-default text-teal mx-1 shadow" role="button" aria-pressed="true"><i class="fa fa-lg fa-fw fa-eye"></i></a>
+                        <a href="{{route('products.edit', ['product' => $product])}}" class="btn btn-xs btn-default text-primary mx-1 shadow" role="button" aria-pressed="true"><i class="fa fa-lg fa-fw fa-pen"></i></a>
+                        <a href="{{route('products.delete', ['product' => $product])}}" class="btn btn-xs btn-default text-danger mx-1 shadow" role="button" aria-pressed="true"><i class="fa fa-lg fa-fw fa-trash"></i></a>
                     </td>
                 </tr>
             @endforeach

@@ -17,9 +17,12 @@ class Product extends Model
         'title',
         'barcode',
         'price',
+        'sale_price',
         'description',
         'quantity',
         'is_active',
+        'is_new',
+        'is_recommend',
     ];
     
     public static function add(array $req)
@@ -28,9 +31,12 @@ class Product extends Model
             'title' => $req['title'],
             'barcode' => $req['barcode'],
             'price' => $req['price'],
+            'sale_price' => $req['sale_price'] ?? null,
             'description' => $req['description'] ?? null,
             'quantity' => $req['quantity'],
-            'is_active' => filter_var($req['is_active'], FILTER_VALIDATE_BOOLEAN)
+            'is_active' => filter_var($req['is_active'] ?? 'false', FILTER_VALIDATE_BOOLEAN),
+            'is_new' => filter_var($req['is_new'] ?? 'false', FILTER_VALIDATE_BOOLEAN),
+            'is_recommend' => filter_var($req['is_recommend'] ?? 'false', FILTER_VALIDATE_BOOLEAN) ?? null,
         ]);
 
         $product->syncFiles($req);
@@ -41,12 +47,27 @@ class Product extends Model
         $this->updateColumn($req, 'title');
         $this->updateColumn($req, 'barcode');
         $this->updateColumn($req, 'price');
+        $this->updateColumn($req, 'sale_price');
         $this->updateColumn($req, 'description');
         $this->updateColumn($req, 'quantity');
-        $this->updateColumn($req, 'is_active');
+        $this->is_active = filter_var($req['is_active'] ?? 'false', FILTER_VALIDATE_BOOLEAN);
+        $this->is_new = filter_var($req['is_new'] ?? 'false', FILTER_VALIDATE_BOOLEAN);
+        $this->is_recommend = filter_var($req['is_recommend'] ?? 'false', FILTER_VALIDATE_BOOLEAN);
         $this->save();
 
         $this->syncFiles($req);
+    }
+
+    public function remove()
+    {
+        foreach ($this->productHasImages as $file) {
+            deleteFile($file->url);
+        }
+
+        $this->productHasImages()->delete();
+        $this->delete();
+        
+        return $this->id;
     }
 
     public function productHasImages()

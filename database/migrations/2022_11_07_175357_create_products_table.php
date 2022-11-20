@@ -19,8 +19,11 @@ return new class extends Migration
             $table->string('title');
             $table->string('barcode')->unique();
             $table->float('price')->default(0.00);
+            $table->float('sale_price')->nullable();
             $table->integer('quantity')->default(0);
             $table->boolean('is_active')->default(false);
+            $table->boolean('is_new')->default(false);
+            $table->boolean('is_recommend')->default(false);
             $table->text('description')->nullable();
             $table->timestamps();
             $table->softDeletes();

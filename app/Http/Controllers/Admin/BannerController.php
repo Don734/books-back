@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\ProductRequest;
-use App\Models\Product;
+use Illuminate\Http\Request;
+use App\Http\Requests\Admin\BannerRequest;
+use App\Models\Banner;
 
-class ProductController extends Controller
+class BannerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +16,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::cursor();
-        return view('admin.pages.products.list', ['products' => $products]);
+        $banners = Banner::all();
+        return view('admin.pages.banners.list', ['banners' => $banners]);
     }
 
     /**
@@ -26,7 +27,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.products.create');
+        return view('admin.pages.banners.create');
     }
 
     /**
@@ -35,9 +36,9 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductRequest $request)
+    public function store(BannerRequest $request)
     {
-        Product::add($request->all(), $request->user('web'));
+        Banner::add($request->all(), $request->user('web'));
         return back()->withInput();
     }
 
@@ -47,9 +48,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(Banner $banner)
     {
-        return view('admin.pages.products.show', ['product' => $product]);
+        return view('admin.pages.banners.show', ['banner' => $banner]);
     }
 
     /**
@@ -58,9 +59,10 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(Banner $banner)
     {
-        return view('admin.pages.products.edit', ['product' => $product]);
+        return view('admin.pages.banners.edit', ['banner' => $banner]);
+
     }
 
     /**
@@ -70,9 +72,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductRequest $request, Product $product)
+    public function update(BannerRequest $request, Banner $banner)
     {
-        $product->edit($request->all(), $request->user('web'));
+        $banner->edit($request->all(), $request->user('web'));
         return back();
     }
 
@@ -82,8 +84,8 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(Banner $banner)
     {
-        return $product->remove();
+        return $banner->remove();
     }
 }

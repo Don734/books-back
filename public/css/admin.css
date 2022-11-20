@@ -1,16 +1,43 @@
-.info-box {
-  flex-direction: row-reverse;
-}
-.info-box .info-box-content {
-  flex-direction: column-reverse;
-}
-.info-box .info-box-content .info-box-text {
-  font-size: 1rem;
-}
-.info-box .info-box-content .info-box-number {
-  font-size: 2.2rem;
-  line-height: 1.2;
-}
-.info-box .info-box-icon {
+.small-box .icon {
   opacity: 0.15;
+}
+
+.gallery {
+  margin-top: 20px;
+  width: 100%;
+  max-height: 380px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.gallery .col {
+  position: relative;
+}
+.gallery .col img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.gallery .col .controls {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transition: 0.3s ease;
+}
+.gallery .col:hover .overlay, .gallery .col:hover .controls {
+  visibility: visible;
+  opacity: 1;
+}
+
+.image {
+  width: 150px;
+  height: 80px;
 }

@@ -1,20 +1,5 @@
-.info-box {
-    flex-direction: row-reverse;
-
-    .info-box-content {
-        flex-direction: column-reverse;
-
-        .info-box-text {
-            font-size: 1rem;
-        }
-
-        .info-box-number {
-            font-size: 2.2rem;
-            line-height: 1.2;
-        }
-    }
-
-    .info-box-icon {
+.small-box {
+    .icon {
         opacity: .15;
     }
 }

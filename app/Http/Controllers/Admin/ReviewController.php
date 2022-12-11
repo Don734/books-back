@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\Admin\BannerRequest;
-use App\Models\Banner;
 
-class BannerController extends Controller
+class ReviewController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +14,7 @@ class BannerController extends Controller
      */
     public function index()
     {
-        $banners = Banner::all();
-        return view('admin.pages.banners.list', ['banners' => $banners]);
+        //
     }
 
     /**
@@ -27,7 +24,7 @@ class BannerController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.banners.create');
+        //
     }
 
     /**
@@ -36,10 +33,9 @@ class BannerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(BannerRequest $request)
+    public function store(Request $request)
     {
-        Banner::add($request->all(), $request->user('web'));
-        return view('admin.pages.banners.list');
+        //
     }
 
     /**
@@ -48,9 +44,9 @@ class BannerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Banner $banner)
+    public function show($id)
     {
-        return view('admin.pages.banners.show', ['banner' => $banner]);
+        //
     }
 
     /**
@@ -59,9 +55,9 @@ class BannerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Banner $banner)
+    public function edit($id)
     {
-        return view('admin.pages.banners.edit', ['banner' => $banner]);
+        //
     }
 
     /**
@@ -71,10 +67,9 @@ class BannerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(BannerRequest $request, Banner $banner)
+    public function update(Request $request, $id)
     {
-        $banner->edit($request->all(), $request->user('web'));
-        return view('admin.pages.banners.list');
+        //
     }
 
     /**
@@ -83,8 +78,8 @@ class BannerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Banner $banner)
+    public function destroy($id)
     {
-        return $banner->remove();
+        //
     }
 }

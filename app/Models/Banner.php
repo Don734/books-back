@@ -54,14 +54,14 @@ class Banner extends Model
 
     public function uploadImageBanner(array $req)
     {
-        if (Arr::has($req, 'banner_image_url')) {
+        if (Arr::has($req, 'image')) {
             if (!filled($this->banner_image_url)) {
-                $bannerImage = uploadFile($req['banner_image_url'], 'Banner/Image', $this->id);
+                $bannerImage = uploadFile($req['image'], 'Banner/Image', $this->id);
                 $this->update(['banner_image_url' => $bannerImage]);
             } else {
                 deleteFile($this->banner_image_url);
-                $bannerImage = uploadFile($req['banner_image_url'], 'Banner/Image', $this->id);
-                $this->update(['image' => $bannerImage]);
+                $bannerImage = uploadFile($req['image'], 'Banner/Image', $this->id);
+                $this->update(['banner_image_url' => $bannerImage]);
             }
         }
 

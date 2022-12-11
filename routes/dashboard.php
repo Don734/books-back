@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\ReviewController;
 
 Route::middleware(['auth'])->group(function() {
     Route::get('/dashboard', [App\Http\Controllers\Admin\MainController::class, 'index'])->name('dashboard');
@@ -27,6 +28,16 @@ Route::middleware(['auth'])->group(function() {
         Route::get('/edit/{product}', [ProductController::class, 'edit'])->name('products.edit');
         Route::put('/update/{product}', [ProductController::class, 'update'])->name('products.update');
         Route::delete('/delete/{product}', [ProductController::class, 'delete'])->name('products.delete');
+    });
+
+    Route::prefix('reviews')->group(function() {
+        Route::get('/', [ReviewController::class, 'index'])->name('reviews');
+        Route::get('/create', [ReviewController::class, 'create'])->name('reviews.create');
+        Route::post('/add', [ReviewController::class, 'store'])->name('reviews.store');
+        Route::get('/show/{review}', [ReviewController::class, 'show'])->name('reviews.show');
+        Route::get('/edit/{review}', [ReviewController::class, 'edit'])->name('reviews.edit');
+        Route::put('/update/{review}', [ReviewController::class, 'update'])->name('reviews.update');
+        Route::delete('/delete/{review}', [ReviewController::class, 'delete'])->name('reviews.delete');
     });
 
     Route::prefix('orders')->group(function() {

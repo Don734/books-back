@@ -8,7 +8,7 @@
 
 @section('content')
     <div class="actions-col col-14 mb-3">
-        <a href="{{route('orders.create')}}" class="btn btn-success" role="button" aria-pressed="true">Add</a>
+        {{-- <a href="{{route('orders.create')}}" class="btn btn-success" role="button" aria-pressed="true">Add</a> --}}
     </div>
     <table class="table table-striped data-table" id="orders_table">
         @include('admin.partials.table.head',[

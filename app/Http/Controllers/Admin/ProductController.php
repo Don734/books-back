@@ -38,7 +38,7 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         Product::add($request->all(), $request->user('web'));
-        return back()->withInput();
+        return view('admin.pages.products.list');
     }
 
     /**
@@ -73,7 +73,7 @@ class ProductController extends Controller
     public function update(ProductRequest $request, Product $product)
     {
         $product->edit($request->all(), $request->user('web'));
-        return back();
+        return view('admin.pages.products.list');
     }
 
     /**

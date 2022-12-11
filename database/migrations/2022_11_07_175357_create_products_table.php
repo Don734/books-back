@@ -18,9 +18,16 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('barcode')->unique();
+            $table->string('size')->nullable();
+            $table->string('age')->nullable();
+            $table->string('binding')->nullable();
+            $table->string('cover_link')->nullable();
             $table->float('price')->default(0.00);
             $table->float('sale_price')->nullable();
             $table->integer('quantity')->default(0);
+            $table->integer('page_count')->nullable();
+            $table->integer('year')->nullable();
+            $table->integer('weight')->nullable();
             $table->boolean('is_active')->default(false);
             $table->boolean('is_new')->default(false);
             $table->boolean('is_recommend')->default(false);

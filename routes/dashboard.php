@@ -28,6 +28,7 @@ Route::middleware(['auth'])->group(function() {
         Route::get('/edit/{product}', [ProductController::class, 'edit'])->name('products.edit');
         Route::put('/update/{product}', [ProductController::class, 'update'])->name('products.update');
         Route::delete('/delete/{product}', [ProductController::class, 'delete'])->name('products.delete');
+        Route::post('/import', [ProductController::class, 'import'])->name('products.import');
     });
 
     Route::prefix('reviews')->group(function() {

@@ -44,6 +44,7 @@ class ProductRequest extends FormRequest
             'is_recommend' => 'nullable|string',
             'cover_image' => 'nullable|image',
             'cover_delete' => 'nullable|string',
+            'excel' => 'nullable|file'
         ];
     }
 }

@@ -8,7 +8,16 @@
 
 @section('content')
     <div class="actions-col col-14 mb-3">
-        <a href="{{route('products.create')}}" class="btn btn-success" role="button" aria-pressed="true">Add</a>
+        <div class="row justify-content-between">
+            <div class="col-md-4">
+                <a href="{{route('products.create')}}" class="btn btn-success" role="button" aria-pressed="true">Add</a>
+            </div>
+            <div class="col-md-4 d-flex justify-content-end">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#importModal">
+                    Import
+                </button>
+            </div>
+        </div>
     </div>
     <table class="table table-striped data-table" id="products_table">
         @include('admin.partials.table.head',[
@@ -42,7 +51,14 @@
     </table>
 @stop
 
+@include('admin.partials.modals.import')
+
+@section('css')
+    <link rel="stylesheet" href="{{asset('css/admin.css')}}">   
+@stop
+
 @section('js')
+    <script src="{{asset('js/admin.js')}}"></script>
     <script>
         $(document).ready( function () {
             $('#products_table').DataTable();

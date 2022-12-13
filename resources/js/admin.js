@@ -1,3 +1,4 @@
+import api from "./api";
 
 document.addEventListener('DOMContentLoaded', function () {
   const salesChartCanvas = document.getElementById('revenue-chart-canvas');

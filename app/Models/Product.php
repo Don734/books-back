@@ -37,9 +37,9 @@ class Product extends Model
         $product = self::create([
             'title' => $req['title'],
             'barcode' => $req['barcode'],
-            'size' => $req['size'],
-            'age' => $req['age'],
-            'binding' => $req['binding'],
+            'size' => $req['size'] ?? null,
+            'age' => $req['age'] ?? null,
+            'binding' => $req['binding'] ?? null,
             'price' => $req['price'],
             'sale_price' => $req['sale_price'] ?? null,
             'description' => $req['description'] ?? null,

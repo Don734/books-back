@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Http\Requests\Admin\ProductRequest;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Product;
+use App\Imports\ProductsImport;
 
 class ProductController extends Controller
 {
@@ -85,5 +88,12 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         return $product->remove();
+    }
+
+    public function import(Request $request)
+    {
+        Excel::import(new ProductsImport, $request->excel);
+
+        return redirect()->route('products');
     }
 }

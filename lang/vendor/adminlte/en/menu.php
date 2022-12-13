@@ -7,6 +7,7 @@ return [
     'pages'                         => 'Pages',
     'account_settings'              => 'ACCOUNT SETTINGS',
     'profile'                       => 'Profile',
+    'settings'                      => 'Settings',
     'change_password'               => 'Change Password',
     'multilevel'                    => 'Multi Level',
     'level_one'                     => 'Level 1',

@@ -164,21 +164,41 @@ $confRecommend = [
             <div class="card">
                 <div class="card-header">Загрузка файлов</div>
                 <div class="card-body">
-                    <x-adminlte-input-file id="files" name="upload_files[]" label-class="text-lightblue" placeholder="Choose files..." legend="Choose" multiple>
-                        <x-slot name="prependSlot">
-                            <div class="input-group-text">
-                                <i class="fas fa-file-upload text-lightblue"></i>
+                    <div class="tab-content p-0">
+                        <div class="tab-pane active" id="choose-file">
+                            <x-adminlte-input-file id="files" name="upload_files[]" label-class="text-lightblue" placeholder="Choose files..." legend="Choose" multiple>
+                                <x-slot name="prependSlot">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-file-upload text-lightblue"></i>
+                                    </div>
+                                </x-slot>
+                            </x-adminlte-input-file>
+                            <div class="preview"></div>
+                        </div>
+                        <div class="tab-pane" id="link">
+                            <x-adminlte-input name="links[1]" placeholder="Ссылка на картинку" label-class="text-lightblue">
+                                <x-slot name="prependSlot">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-heading text-lightblue"></i>
+                                    </div>
+                                </x-slot>
+                            </x-adminlte-input>
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-success btn-block" id="addInput" type="button">Добавить поле</button>
                             </div>
-                        </x-slot>
-                    </x-adminlte-input-file>
+                        </div>
+                    </div>
                     <div class="preview">
                         @if (count($product->productHasImages) > 0)
                             <div class="row">
                                 @foreach ($product->productHasImages as $image)
+                                    @php
+                                        $image = ($image->url != null) ? \Storage::url($image->url) : $image->link;
+                                    @endphp
                                     <div class="thumb-wrap col-md-3">
-                                        <img src="{{\Storage::url($image->url)}}" class="img-thumbnail">
+                                        <img src="{{$image}}" class="img-thumbnail">
                                         <div class="controls">
-                                            <a href="{{$image->url}}" class="btn btn-xs btn-default text-danger mx-1 shadow control"><i class="fa fa-lg fa-fw fa-trash"></i></a>
+                                            <a href="{{$image}}" class="btn btn-xs btn-default text-danger mx-1 shadow control"><i class="fa fa-lg fa-fw fa-trash"></i></a>
                                         </div>
                                     </div>
                                 @endforeach

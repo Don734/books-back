@@ -145,16 +145,44 @@ $config = [
                 </div>
             </div>
             <div class="card">
-                <div class="card-header">Загрузка файлов</div>
+                <div class="card-header">
+                    <h3 class="card-title">Загрузка файлов</h3>
+                    <div class="card-tools">
+                        <ul class="nav nav-pills ml-auto">
+                          <li class="nav-item">
+                            <a class="nav-link active" href="#choose-file" data-toggle="tab">Файлы</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="#link" data-toggle="tab">Ссылки</a>
+                          </li>
+                        </ul>
+                      </div>
+                </div>
                 <div class="card-body">
-                    <x-adminlte-input-file id="files" name="upload_files[]" label-class="text-lightblue" placeholder="Choose files..." legend="Choose" multiple>
-                        <x-slot name="prependSlot">
-                            <div class="input-group-text">
-                                <i class="fas fa-file-upload text-lightblue"></i>
+                    <div class="tab-content p-0">
+                        <div class="tab-pane active" id="choose-file">
+                            <x-adminlte-input-file id="files" name="upload_files[]" label-class="text-lightblue" placeholder="Choose files..." legend="Choose" multiple>
+                                <x-slot name="prependSlot">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-file-upload text-lightblue"></i>
+                                    </div>
+                                </x-slot>
+                            </x-adminlte-input-file>
+                            <div class="preview"></div>
+                        </div>
+                        <div class="tab-pane" id="link">
+                            <x-adminlte-input name="links[1]" placeholder="Ссылка на картинку" label-class="text-lightblue">
+                                <x-slot name="prependSlot">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-heading text-lightblue"></i>
+                                    </div>
+                                </x-slot>
+                            </x-adminlte-input>
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-success btn-block" id="addInput" type="button">Добавить поле</button>
                             </div>
-                        </x-slot>
-                    </x-adminlte-input-file>
-                    <div class="preview"></div>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-footer">
                     <x-adminlte-button type="submit" label="Submit" theme="success"/>

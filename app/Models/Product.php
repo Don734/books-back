@@ -54,6 +54,7 @@ class Product extends Model
 
         $product->coverFile($req);
         $product->syncFiles($req);
+        $product->setLinks($req);
     }
 
     public function edit(array $req)
@@ -77,6 +78,7 @@ class Product extends Model
 
         $this->coverFile($req);
         $this->syncFiles($req);
+        $this->setLinks($req);
     }
 
     public function remove()
@@ -119,7 +121,7 @@ class Product extends Model
     {
         if (Arr::has($request, 'upload_files') and filled($request['upload_files']) and is_array($request['upload_files'])) {
             foreach ($request['upload_files'] as $file) {
-                ProductHasImages::add($file, $this->id, $user);
+                ProductHasImages::add($file, null, $this->id, $user);
             }
         }
         if (Arr::has($request, 'files_for_delete') and filled($request['files_for_delete']) and is_array($request['files_for_delete'])) {
@@ -128,6 +130,15 @@ class Product extends Model
             }
 
             $this->productHasImages()->whereIn('url', $request['files_for_delete'])->delete();
+        }
+    }
+
+    public function setLinks(array $request, $user = null)
+    {
+        if (Arr::has($request, 'links') and filled($request['links']) and is_array($request['links'])) {
+            foreach ($request['links'] as $link) {
+                ProductHasImages::add(null, $link, $this->id, $user);
+            }
         }
     }
 }

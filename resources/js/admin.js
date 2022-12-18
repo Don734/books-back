@@ -142,4 +142,25 @@ document.addEventListener('DOMContentLoaded', function () {
       coverImagePreview.innerHTML = html;
     })
   }
+
+  const addInput = document.querySelector('#addInput');
+
+  if (typeof(addInput) != 'undefined' && addInput != null) {
+    const linkContainer = document.querySelector('#link .form-group');
+    let inputCount = linkContainer.children.length;
+
+    addInput.addEventListener('click', function(e) {
+      e.preventDefault();
+      inputCount += 1;
+      linkContainer.innerHTML += 
+      `<div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <i class="fas fa-heading text-lightblue"></i>
+          </div>
+        </div>
+        <input name="links[${inputCount}]" value="" class="form-control" placeholder="Ссылка на картинку">
+      </div>`;
+    })
+  }
 })

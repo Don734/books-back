@@ -22,6 +22,7 @@ return new class extends Migration
             $table->nullableMorphs('userable');
 
             $table->string('url')->nullable();
+            $table->string('link')->nullable();
             $table->string('ext')->nullable();
             $table->double('size')->nullable();
             $table->string('name')->nullable();

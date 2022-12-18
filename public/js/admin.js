@@ -4977,6 +4977,16 @@ document.addEventListener('DOMContentLoaded', function () {
       coverImagePreview.innerHTML = html;
     });
   }
+  var addInput = document.querySelector('#addInput');
+  if (typeof addInput != 'undefined' && addInput != null) {
+    var linkContainer = document.querySelector('#link .form-group');
+    var inputCount = linkContainer.children.length;
+    addInput.addEventListener('click', function (e) {
+      e.preventDefault();
+      inputCount += 1;
+      linkContainer.innerHTML += "<div class=\"input-group\">\n        <div class=\"input-group-prepend\">\n          <div class=\"input-group-text\">\n            <i class=\"fas fa-heading text-lightblue\"></i>\n          </div>\n        </div>\n        <input name=\"links[".concat(inputCount, "]\" value=\"\" class=\"form-control\" placeholder=\"\u0421\u0441\u044B\u043B\u043A\u0430 \u043D\u0430 \u043A\u0430\u0440\u0442\u0438\u043D\u043A\u0443\">\n      </div>");
+    });
+  }
 });
 })();
 

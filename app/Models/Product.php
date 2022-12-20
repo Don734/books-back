@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Carbon\Carbon;
 use App\Traits\EloquentHelper;
 
@@ -15,6 +16,7 @@ class Product extends Model
 
     protected $fillable = [
         'title',
+        'slug',
         'size',
         'age',
         'binding',
@@ -36,6 +38,7 @@ class Product extends Model
     {
         $product = self::create([
             'title' => $req['title'],
+            'slug' => Str::slug($req['title']),
             'barcode' => $req['barcode'],
             'size' => $req['size'] ?? null,
             'age' => $req['age'] ?? null,

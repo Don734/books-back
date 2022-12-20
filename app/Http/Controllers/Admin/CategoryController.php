@@ -4,12 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\Admin\ProductRequest;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Models\Product;
-use App\Imports\ProductsImport;
+use App\Http\Requests\Admin\CategoryRequest;
+use App\Models\Category;
 
-class ProductController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +17,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::cursor();
-        return view('admin.pages.products.list', ['products' => $products]);
+        $categories = Category::cursor();
+        return view('admin.pages.categories.list', ['categories' => $categories]);
     }
 
     /**
@@ -29,7 +28,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.products.create');
+        return view('admin.pages.categories.create');
     }
 
     /**
@@ -38,10 +37,11 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductRequest $request)
+    public function store(CategoryRequest $request)
     {
-        Product::add($request->all(), $request->user('web'));
-        return redirect()->route('products');
+        Category::add($request->all(), $request->user('web'));
+
+        return redirect()->route('categories');
     }
 
     /**
@@ -50,9 +50,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(Category $category)
     {
-        return view('admin.pages.products.show', ['product' => $product]);
+        return view('admin.pages.categories.show', ['product' => $category]);
     }
 
     /**
@@ -61,9 +61,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(Category $category)
     {
-        return view('admin.pages.products.edit', ['product' => $product]);
+        return view('admin.pages.categories.edit', ['product' => $category]);
     }
 
     /**
@@ -73,9 +73,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductRequest $request, Product $product)
+    public function update(CategoryRequest $request, Category $category)
     {
-        $product->edit($request->all(), $request->user('web'));
+        $category->edit($request->all(), $request->user('web'));
         return redirect()->route('products');
     }
 
@@ -85,15 +85,8 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(Category $category)
     {
-        return $product->remove();
-    }
-
-    public function import(Request $request)
-    {
-        Excel::import(new ProductsImport, $request->excel);
-
-        return redirect()->route('products');
+        return $category->remove();
     }
 }

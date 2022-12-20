@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ReviewController;
+use App\Http\Controllers\Admin\CategoryController;
 
 Route::middleware(['auth'])->group(function() {
     Route::get('/dashboard', [App\Http\Controllers\Admin\MainController::class, 'index'])->name('dashboard');
@@ -39,6 +40,16 @@ Route::middleware(['auth'])->group(function() {
         Route::get('/edit/{review}', [ReviewController::class, 'edit'])->name('reviews.edit');
         Route::put('/update/{review}', [ReviewController::class, 'update'])->name('reviews.update');
         Route::delete('/delete/{review}', [ReviewController::class, 'delete'])->name('reviews.delete');
+    });
+
+    Route::prefix('categories')->group(function() {
+        Route::get('/', [CategoryController::class, 'index'])->name('categories');
+        Route::get('/create', [CategoryController::class, 'create'])->name('categories.create');
+        Route::post('/add', [CategoryController::class, 'store'])->name('categories.store');
+        Route::get('/show/{category}', [CategoryController::class, 'show'])->name('categories.show');
+        Route::get('/edit/{category}', [CategoryController::class, 'edit'])->name('categories.edit');
+        Route::put('/update/{category}', [CategoryController::class, 'update'])->name('categories.update');
+        Route::delete('/delete/{category}', [CategoryController::class, 'delete'])->name('categories.delete');
     });
 
     Route::prefix('orders')->group(function() {

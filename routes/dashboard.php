@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ReviewController;
+use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\ProfileController;
 
 Route::middleware(['auth'])->group(function() {
     Route::get('/dashboard', [App\Http\Controllers\Admin\MainController::class, 'index'])->name('dashboard');
@@ -49,5 +51,13 @@ Route::middleware(['auth'])->group(function() {
 
     Route::prefix('gallery')->group(function() {
         Route::get('/', [GalleryController::class, 'index'])->name('gallery');
+    });
+
+    Route::prefix('settings')->group(function() {
+        Route::get('/', [SettingController::class, 'index'])->name('settings');
+    });
+
+    Route::prefix('profile')->group(function() {
+        Route::get('/', [ProfileController::class, 'index'])->name('profile');
     });
 });

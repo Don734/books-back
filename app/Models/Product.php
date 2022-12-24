@@ -74,6 +74,7 @@ class Product extends Model
         $this->updateColumn($req, 'page_count');
         $this->updateColumn($req, 'year');
         $this->updateColumn($req, 'weight');
+        $this->slug = Str::slug($req['title']);
         $this->is_active = filter_var($req['is_active'] ?? 'false', FILTER_VALIDATE_BOOLEAN);
         $this->is_new = filter_var($req['is_new'] ?? 'false', FILTER_VALIDATE_BOOLEAN);
         $this->is_recommend = filter_var($req['is_recommend'] ?? 'false', FILTER_VALIDATE_BOOLEAN);
@@ -89,6 +90,7 @@ class Product extends Model
         foreach ($this->productHasImages as $file) {
             deleteFile($file->url);
         }
+        deleteFile($this->cover_link);
 
         $this->productHasImages()->delete();
         $this->delete();

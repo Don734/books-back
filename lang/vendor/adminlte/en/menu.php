@@ -22,4 +22,5 @@ return [
     'orders'                        => 'Orders',
     'reviews'                       => 'Reviews',
     'gallery'                       => 'Gallery',
+    'categories'                    => 'Categories',
 ];

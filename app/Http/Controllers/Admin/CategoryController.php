@@ -40,7 +40,6 @@ class CategoryController extends Controller
     public function store(CategoryRequest $request)
     {
         Category::add($request->all(), $request->user('web'));
-
         return redirect()->route('categories');
     }
 
@@ -52,7 +51,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return view('admin.pages.categories.show', ['product' => $category]);
+        return view('admin.pages.categories.show', ['category' => $category]);
     }
 
     /**
@@ -63,7 +62,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('admin.pages.categories.edit', ['product' => $category]);
+        return view('admin.pages.categories.edit', ['category' => $category]);
     }
 
     /**
@@ -76,7 +75,7 @@ class CategoryController extends Controller
     public function update(CategoryRequest $request, Category $category)
     {
         $category->edit($request->all(), $request->user('web'));
-        return redirect()->route('products');
+        return redirect()->route('categories');
     }
 
     /**

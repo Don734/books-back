@@ -26,6 +26,9 @@ class CategoryRequest extends FormRequest
         return [
             'title' => 'required|string',
             'description' => 'nullable|string',
+            'is_active' => 'nullable|string',
+            'cover_image' => 'nullable|image',
+            'cover_delete' => 'nullable|string',
         ];
     }
 }

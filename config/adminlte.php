@@ -342,6 +342,11 @@ return [
             'icon' => 'fas fa-list-ul',
         ],
         [
+            'text' => 'categories',
+            'url'  => 'admin/categories',
+            'icon' => 'fas fa-list-ul',
+        ],
+        [
             'text' => 'orders',
             'url'  => 'admin/orders',
             'icon' => 'fas fa-shopping-cart',
@@ -354,7 +359,7 @@ return [
         [
             'text' => 'settings',
             'url'  => 'admin/settings',
-            'icon' => 'fas fa-comments',
+            'icon' => 'fas fa-cog',
         ],
         ['header' => 'account_settings'],
         [

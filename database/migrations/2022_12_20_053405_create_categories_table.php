@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug');
             $table->string('description');
+            $table->string('cover_link')->nullable();
+            $table->boolean('is_active')->default(false);
             $table->timestamps();
         });
     }

@@ -17,15 +17,57 @@ class Category extends Model
         'title',
         'slug',
         'description',
+        'cover_link',
+        'is_active',
     ];
 
-    public static function FunctionName(array $req)
+    public static function add(array $req)
     {
         $category = self::create([
             'title' => $req['title'],
             'slug' => Str::slug($req['title']),
             'sale_price' => $req['sale_price'] ?? null,
+            'description' => $req['description'] ?? null,
+            'is_active' => filter_var($req['is_active'] ?? 'false', FILTER_VALIDATE_BOOLEAN),
         ]);
 
+        $category->coverFile($req);
+    }
+
+    public function edit(array $req)
+    {
+        $this->updateColumn($req, 'title');
+        $this->updateColumn($req, 'description');
+        $this->slug = Str::slug($req['title']);
+        $this->is_active = filter_var($req['is_active'] ?? 'false', FILTER_VALIDATE_BOOLEAN);
+        $this->save();
+
+        $this->coverFile($req);
+    }
+
+    public function remove()
+    {
+        deleteFile($this->cover_link);
+        $this->delete();
+        return $this->id;
+    }
+
+    public function coverFile(array $req)
+    {
+        if (Arr::has($req, 'cover_image')) {
+            if (!filled($this->cover_link)) {
+                $coverImage = uploadFile($req['cover_image'], 'Product/Cover', $this->id);
+                $this->update(['cover_link' => $coverImage]);
+            } else {
+                deleteFile($this->cover_link);
+                $coverImage = uploadFile($req['cover_image'], 'Product/Cover', $this->id);
+                $this->update(['cover_link' => $coverImage]);
+            }
+        }
+
+        if (Arr::has($req, 'cover_delete')) {
+            deleteFile($this->cover_link);
+            $this->update(['cover_link' => null]);
+        }
     }
 }

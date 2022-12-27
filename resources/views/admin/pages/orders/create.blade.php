@@ -60,7 +60,9 @@
                     <x-adminlte-button theme="primary" icon="fas fa-paper-plane" label="Send"/>
                 </x-slot>
             </x-adminlte-textarea>
-            <x-adminlte-button type="submit" label="Submit" theme="success"/>
+            <div class="form-footer">
+                <x-adminlte-button type="submit" label="Submit" theme="success"/>
+            </div>
         </form>
     </div>
 @stop

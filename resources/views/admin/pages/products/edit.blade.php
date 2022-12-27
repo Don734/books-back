@@ -19,6 +19,10 @@ $confNew = [
 $confRecommend = [
     'state' => $product->is_recommend ? true : false,
 ];
+$configSelect = [
+        "placeholder" => "Категории...",
+        "allowClear" => true,
+];
 @endphp
 
 @section('content')
@@ -131,6 +135,21 @@ $confRecommend = [
                     <div class="card">
                         <div class="card-header">Информация о продукте</div>
                         <div class="card-body">
+                            <x-adminlte-select2 id="sel2Category" name="sel2Category[]" label="Категории" label-class="text-lightblue" :config="$configSelect" multiple>
+                                <x-slot name="prependSlot">
+                                    <div class="input-group-text text-lightblue">
+                                        <i class="fas fa-tag"></i>
+                                    </div>
+                                </x-slot>
+                                <x-slot name="appendSlot">
+                                    <x-adminlte-button theme="outline-dark" label="Clear" icon="fas fa-lg fa-ban text-danger"/>
+                                </x-slot>
+                                @if (count($categories) > 0)
+                                    @foreach ($categories as $category)
+                                        <option value="{{$category->id}}">{{$category->title}}</option>
+                                    @endforeach
+                                @endif
+                            </x-adminlte-select2>
                             <x-adminlte-input name="year" label="Год выпуска" value="{{$product->year}}" placeholder="Введите год выпуска.." label-class="text-lightblue">
                                 <x-slot name="prependSlot">
                                     <div class="input-group-text">
@@ -206,9 +225,9 @@ $confRecommend = [
                         @endif
                     </div>
                 </div>
-                <div class="card-footer">
-                    <x-adminlte-button type="submit" label="Submit" theme="success"/>
-                </div>
+            </div>
+            <div class="form-footer">
+                <x-adminlte-button type="submit" label="Submit" theme="success"/>
             </div>
         </form>
     </div>

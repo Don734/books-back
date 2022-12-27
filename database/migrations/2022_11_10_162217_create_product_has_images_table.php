@@ -13,6 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('product_has_images', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')
@@ -30,6 +31,7 @@ return new class extends Migration
             $table->double('height')->nullable();
             $table->timestamps();
         });
+        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -39,6 +41,8 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('product_has_images');
+        Schema::enableForeignKeyConstraints();
     }
 };

@@ -6,4 +6,28 @@
 
 .wrap {
     padding: 0.5rem 0;
+    padding-bottom: 60px;
+}
+
+.form-footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 30px;
+    margin-left: 250px;
+    background-color: $white;
+    box-shadow: 0 0 1px rgb(0 0 0 / 13%), 1px 0 3px rgb(0 0 0 / 20%);
+
+    @media screen and (min-width: 768px) {
+        margin-left: 250px;
+    }
+}
+
+.sidebar-mini.sidebar-collapse .content-wrapper {
+    .form-footer {
+        @media screen and (min-width: 992px) {
+            margin-left: 4.6rem!important;
+        }
+    }
 }

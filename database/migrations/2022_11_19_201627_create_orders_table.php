@@ -13,6 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string('customer_name');
@@ -24,6 +25,7 @@ return new class extends Migration
             $table->text('addon_info')->nullable();
             $table->timestamps();
         });
+        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -33,6 +35,8 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('orders');
+        Schema::enableForeignKeyConstraints();
     }
 };

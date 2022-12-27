@@ -72,6 +72,9 @@ $confActive = [
                     </div>
                 </div>
             </div>
+            <div class="form-footer">
+                <x-adminlte-button type="submit" label="Submit" theme="success"/>
+            </div>
         </form>
     </div>
 @stop

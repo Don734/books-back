@@ -13,6 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('product_has_categories', function (Blueprint $table) {
             $table->id();
 
@@ -28,6 +29,7 @@ return new class extends Migration
 
             $table->timestamps();
         });
+        Schema::enableForeignKeyConstraints();
     }
 
     /**

@@ -71,7 +71,9 @@ $confAdvert = [
                     </div>
                 </div>
             </div>
-            <x-adminlte-button type="submit" label="Submit" theme="success"/>
+            <div class="form-footer">
+                <x-adminlte-button type="submit" label="Submit" theme="success"/>
+            </div>
         </form>
     </div>
 @stop

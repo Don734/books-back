@@ -13,6 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
+
+        Schema::disableForeignKeyConstraints();
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
 
@@ -35,6 +37,7 @@ return new class extends Migration
             $table->timestamp("activated_at")->nullable();
             $table->timestamps();
         });
+        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -44,6 +47,8 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('reviews');
+        Schema::enableForeignKeyConstraints();
     }
 };

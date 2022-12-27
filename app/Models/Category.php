@@ -26,7 +26,6 @@ class Category extends Model
         $category = self::create([
             'title' => $req['title'],
             'slug' => Str::slug($req['title']),
-            'sale_price' => $req['sale_price'] ?? null,
             'description' => $req['description'] ?? null,
             'is_active' => filter_var($req['is_active'] ?? 'false', FILTER_VALIDATE_BOOLEAN),
         ]);

@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\UserController;
 
 Route::middleware(['auth'])->group(function() {
     Route::get('/dashboard', [App\Http\Controllers\Admin\MainController::class, 'index'])->name('dashboard');
@@ -52,6 +54,26 @@ Route::middleware(['auth'])->group(function() {
         Route::get('/edit/{category}', [CategoryController::class, 'edit'])->name('categories.edit');
         Route::put('/update/{category}', [CategoryController::class, 'update'])->name('categories.update');
         Route::delete('/delete/{category}', [CategoryController::class, 'delete'])->name('categories.delete');
+    });
+
+    Route::prefix('blogs')->group(function() {
+        Route::get('/', [BlogController::class, 'index'])->name('blogs');
+        Route::get('/create', [BlogController::class, 'create'])->name('blogs.create');
+        Route::post('/add', [BlogController::class, 'store'])->name('blogs.store');
+        Route::get('/show/{blog}', [BlogController::class, 'show'])->name('blogs.show');
+        Route::get('/edit/{blog}', [BlogController::class, 'edit'])->name('blogs.edit');
+        Route::put('/update/{blog}', [BlogController::class, 'update'])->name('blogs.update');
+        Route::delete('/delete/{blog}', [BlogController::class, 'delete'])->name('blogs.delete');
+    });
+
+    Route::prefix('users')->group(function() {
+        Route::get('/', [UserController::class, 'index'])->name('users');
+        Route::get('/create', [UserController::class, 'create'])->name('users.create');
+        Route::post('/add', [UserController::class, 'store'])->name('users.store');
+        Route::get('/show/{user}', [UserController::class, 'show'])->name('users.show');
+        Route::get('/edit/{user}', [UserController::class, 'edit'])->name('users.edit');
+        Route::put('/update/{user}', [UserController::class, 'update'])->name('users.update');
+        Route::delete('/delete/{user}', [UserController::class, 'delete'])->name('users.delete');
     });
 
     Route::prefix('orders')->group(function() {

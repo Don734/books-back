@@ -21,6 +21,9 @@ return [
     'banners'                       => 'Banners',
     'orders'                        => 'Orders',
     'reviews'                       => 'Reviews',
+    'blogs'                         => 'Blogs',
     'gallery'                       => 'Gallery',
     'categories'                    => 'Categories',
+    'users'                         => 'Users',
+    'shop_settings'                 => 'SHOP SETTINGS',
 ];

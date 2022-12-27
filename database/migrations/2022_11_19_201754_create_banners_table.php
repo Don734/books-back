@@ -13,6 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('banners', function (Blueprint $table) {
             $table->id();
             $table->string('banner_image_url')->nullable();
@@ -22,6 +23,7 @@ return new class extends Migration
             $table->boolean('is_advert')->default(false);
             $table->timestamps();
         });
+        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -31,6 +33,8 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('banners');
+        Schema::enableForeignKeyConstraints();
     }
 };

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Admin\ProductRequest;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Product;
+use App\Models\Category;
 use App\Imports\ProductsImport;
 
 class ProductController extends Controller
@@ -29,7 +30,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.products.create');
+        $categories = Category::cursor();
+        return view('admin.pages.products.create', ['categories' => $categories]);
     }
 
     /**
@@ -63,7 +65,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('admin.pages.products.edit', ['product' => $product]);
+        $categories = Category::cursor();
+        return view('admin.pages.products.edit', ['product' => $product, ['categories' => $categories]]);
     }
 
     /**

@@ -36,8 +36,8 @@ return [
     |
      */
     'route_model_binding_keys' => [
-        'group_model' => 'id',
-        'permission_model' => 'id',
+        'group_model' => 'slug',
+        'permission_model' => 'slug',
     ],
 
     /*

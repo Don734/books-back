@@ -18,39 +18,8 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.reviews.list');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        $reviews = Review::cursor();
+        return view('admin.pages.reviews.list', ['reviews' => $reviews]);
     }
 
     /**
@@ -59,9 +28,9 @@ class ReviewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Review $review)
     {
-        //
+        return view('admin.pages.reviews.edit', ['review' => $review]);
     }
 
     /**
@@ -71,9 +40,10 @@ class ReviewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ReviewRequest $request, Review $review)
     {
-        //
+        $review->edit($request->all(), $request->user('web'));
+        return redirect()->route('reviews');
     }
 
     /**
@@ -82,8 +52,8 @@ class ReviewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Review $review)
     {
-        //
+        return $review->remove();
     }
 }

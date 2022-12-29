@@ -33,6 +33,7 @@ return new class extends Migration
             $table->double("rating", 3, 2);
             $table->text("comment")->nullable();
             $table->text('answer')->nullable();
+            $table->timestamp("commented_at")->nullable();
             $table->timestamp("answered_at")->nullable();
             $table->timestamp("activated_at")->nullable();
             $table->timestamps();

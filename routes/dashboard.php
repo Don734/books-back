@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\ConfigController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\UserController;
@@ -44,6 +44,7 @@ Route::middleware(['auth'])->group(function() {
         Route::get('/edit/{review}', [ReviewController::class, 'edit'])->name('reviews.edit');
         Route::put('/update/{review}', [ReviewController::class, 'update'])->name('reviews.update');
         Route::delete('/delete/{review}', [ReviewController::class, 'delete'])->name('reviews.delete');
+        Route::post('/activate', [ReviewController::class, 'update'])->name('reviews.activate');
     });
 
     Route::prefix('categories')->group(function() {
@@ -86,11 +87,13 @@ Route::middleware(['auth'])->group(function() {
         Route::get('/', [GalleryController::class, 'index'])->name('gallery');
     });
 
-    Route::prefix('settings')->group(function() {
-        Route::get('/', [SettingController::class, 'index'])->name('settings');
+    Route::prefix('configs')->group(function() {
+        Route::get('/', [ConfigController::class, 'index'])->name('configs');
+        Route::post('/update', [ConfigController::class, 'update'])->name('configs.update');
     });
 
     Route::prefix('profile')->group(function() {
         Route::get('/', [ProfileController::class, 'index'])->name('profile');
+        Route::post('/update/{user}', [ProfileController::class, 'update'])->name('profile.update');
     });
 });

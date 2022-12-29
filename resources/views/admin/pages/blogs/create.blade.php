@@ -14,7 +14,7 @@ $config = [
 
 @section('content')
     <div class="wrap p-2 bg-white">
-        <form action="{{route('blog.store')}}" method="POST" enctype="multipart/form-data">
+        <form action="{{route('blogs.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-md-7">
@@ -54,7 +54,7 @@ $config = [
                         </div>
                     </div>
                     <div class="card">
-                        <div class="card-header">Информация о продукте</div>
+                        <div class="card-header">Информация о блоге</div>
                         <div class="card-body">
                             <x-adminlte-input-switch name="is_active" label="Статус" label-class="text-lightblue"></x-adminlte-input-switch>
                         </div>

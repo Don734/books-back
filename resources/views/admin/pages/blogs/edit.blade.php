@@ -37,7 +37,7 @@ $confActive = [
                     <div class="card">
                         <div class="card-header">Описание</div>
                         <div class="card-body">
-                            <x-adminlte-text-editor name="text" :config="$config">{{$blog->description}}</x-adminlte-text-editor>
+                            <x-adminlte-text-editor name="text" :config="$config">{{$blog->text}}</x-adminlte-text-editor>
                         </div>
                     </div>
                 </div>
@@ -58,14 +58,14 @@ $confActive = [
                                 <div class="thumb-wrap">
                                     <img src="{{\Storage::url($blog->cover_link)}}" class="img-thumbnail">
                                     <div class="controls">
-                                        <a href="{{$category->cover_link}}" class="btn btn-xs btn-default text-danger mx-1 shadow control"><i class="fa fa-lg fa-fw fa-trash"></i></a>
+                                        <a href="{{$blog->cover_link}}" class="btn btn-xs btn-default text-danger mx-1 shadow control"><i class="fa fa-lg fa-fw fa-trash"></i></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="card">
-                        <div class="card-header">Информация о продукте</div>
+                        <div class="card-header">Информация о блоге</div>
                         <div class="card-body">
                             <x-adminlte-input-switch name="is_active" label="Статус" :config="$confActive" label-class="text-lightblue"></x-adminlte-input-switch>
                         </div>

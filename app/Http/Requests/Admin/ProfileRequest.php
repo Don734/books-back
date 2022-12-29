@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ReviewRequest extends FormRequest
+class ProfileRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,14 @@ class ReviewRequest extends FormRequest
     public function rules()
     {
         return [
-            'answer' => 'nullable|string',
-            'is_active' => 'nullable|string',
-            'is_publish' => 'nullable|string',
+            'first_name' => 'nullable|string',
+            'last_name' => 'nullable|string',
+            'email' => 'required|string',
+            'phone' => 'nullable|string',
+            'password' => 'nullable|string|min:8',
+            'password_confirm' => 'nullable|min:8',
+            'user_image' => 'nullable|image',
+            'user_image_delete' => 'nullable|string',
         ];
     }
 }

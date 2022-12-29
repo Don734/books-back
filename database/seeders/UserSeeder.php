@@ -18,10 +18,10 @@ class UserSeeder extends Seeder
     {
         if (User::whereEmail('admin@domain.com')->doesntExist()) {
             User::create([
-                'name' => 'Admin',
+                'first_name' => 'John',
+                'last_name' => 'Doe',
                 'password' => Hash::make('password'),
                 'email' =>  'admin@domain.com',
-                // 'user_type_id' => UserType::TYPE_ADMIN
             ]);
         }
     }

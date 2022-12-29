@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Models\User;
+use App\Http\Requests\Admin\UserRequest;
 
 class UserController extends Controller
 {
@@ -15,7 +16,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::cursor();
+        return view('admin.pages.users.list', ['users' => $users]);
     }
 
     /**
@@ -25,7 +27,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pages.users.create');
     }
 
     /**
@@ -34,9 +36,10 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        //
+        User::add($request->all(), $request->user('web'));
+        return redirect()->route('users');
     }
 
     /**
@@ -45,9 +48,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(UserRequest $user)
     {
-        //
+        return view('admin.pages.users.show', ['user' => $user]);
     }
 
     /**
@@ -56,9 +59,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(UserRequest $user)
     {
-        //
+        return view('admin.pages.users.edit', ['user' => $user]);
     }
 
     /**
@@ -68,9 +71,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, UserRequest $user)
     {
-        //
+        $user->edit($request->all(), $request->user('web'));
+        return redirect()->route('users');
     }
 
     /**
@@ -79,8 +83,8 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(UserRequest $user)
     {
-        //
+        return $user->remove();
     }
 }

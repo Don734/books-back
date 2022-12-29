@@ -42,7 +42,7 @@ $config = [
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-header">
-                            Banner image
+                            Картинка баннера
                         </div>
                         <div class="card-body">
                             <x-adminlte-input-file id="banner_image" name="image" label-class="text-lightblue" placeholder="Выберите файл..." legend="Выбрать">

@@ -10,7 +10,6 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Arr;
 use App\Traits\EloquentHelper;
-// use Junges\ACL\Concerns\UsersTrait;
 
 class User extends Authenticatable
 {
@@ -101,5 +100,25 @@ class User extends Authenticatable
             deleteFile($this->user_image);
             $this->update(['user_image' => null]);
         }
+    }
+
+    public function getFullNameAttribute()
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
+
+    public function adminlte_image()
+    {
+        return 'https://picsum.photos/300/300';
+    }
+
+    public function adminlte_desc()
+    {
+        return 'That\'s a nice guy';
+    }
+
+    public function adminlte_profile_url()
+    {
+        return 'admin/profile';
     }
 }

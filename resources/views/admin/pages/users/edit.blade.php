@@ -26,37 +26,46 @@ $confActive = [
                         <div class="card-header">Основная информация</div>
                         <div class="card-body">
                             <div class="row">
-                                <x-adminlte-input fgroup-class="col-lg-4" name="first_name" value="{{$user->first_name}}" label="Имя" placeholder="Введите имя..." label-class="text-lightblue">
+                                <x-adminlte-input fgroup-class="col-md-6" name="first_name" value="{{$user->first_name}}" label="Имя*" placeholder="Введите имя..." label-class="text-lightblue">
                                     <x-slot name="prependSlot">
                                         <div class="input-group-text">
                                             <i class="fas fa-heading text-lightblue"></i>
                                         </div>
                                     </x-slot>
                                 </x-adminlte-input>
-                                <x-adminlte-input fgroup-class="col-lg-4" name="last_name" value="{{$user->last_name}}" label="Фамилия" placeholder="Введите фамилию..." label-class="text-lightblue">
+                                <x-adminlte-input fgroup-class="col-md-6" name="last_name" value="{{$user->last_name}}" label="Фамилия*" placeholder="Введите фамилию..." label-class="text-lightblue">
                                     <x-slot name="prependSlot">
                                         <div class="input-group-text">
                                             <i class="fas fa-heading text-lightblue"></i>
                                         </div>
                                     </x-slot>
                                 </x-adminlte-input>
-                                <x-adminlte-input fgroup-class="col-lg-4" name="email" value="{{$user->email}}" type="email" label="Почта" placeholder="Введите почту..." label-class="text-lightblue">
+                            </div>
+                            <div class="row">
+                                <x-adminlte-input fgroup-class="col-md-6" name="email" value="{{$user->email}}" type="email" label="Почта*" placeholder="Введите почту..." label-class="text-lightblue">
                                     <x-slot name="prependSlot">
                                         <div class="input-group-text">
                                             <i class="fas fa-envelope text-lightblue"></i>
                                         </div>
                                     </x-slot>
                                 </x-adminlte-input>
+                                <x-adminlte-input fgroup-class="col-md-6" name="phone" value="{{$user->phone}}" type="text" label="Телефон" placeholder="Введите телефон..." label-class="text-lightblue">
+                                    <x-slot name="prependSlot">
+                                        <div class="input-group-text">
+                                            <i class="fas fa-phone text-lightblue"></i>
+                                        </div>
+                                    </x-slot>
+                                </x-adminlte-input>
                             </div>
                             <div class="row">
-                                <x-adminlte-input fgroup-class="col-lg-4" name="password" type="password" label="Пароль" placeholder="Введите пароль..." label-class="text-lightblue">
+                                <x-adminlte-input fgroup-class="col-md-6" name="password" type="password" label="Пароль*" placeholder="Введите пароль..." label-class="text-lightblue">
                                     <x-slot name="prependSlot">
                                         <div class="input-group-text">
                                             <i class="fas fa-lock text-lightblue"></i>
                                         </div>
                                     </x-slot>
                                 </x-adminlte-input>
-                                <x-adminlte-input fgroup-class="col-lg-4" name="password_confirm" type="password" label="Подтвердите пароль" placeholder="Подтвердите пароль..." label-class="text-lightblue">
+                                <x-adminlte-input fgroup-class="col-md-6" name="password_confirm" type="password" label="Подтвердите пароль*" placeholder="Подтвердите пароль..." label-class="text-lightblue">
                                     <x-slot name="prependSlot">
                                         <div class="input-group-text">
                                             <i class="fas fa-lock text-lightblue"></i>
@@ -80,7 +89,14 @@ $confActive = [
                                     </div>
                                 </x-slot>
                             </x-adminlte-input-file>
-                            <div class="preview cover"></div>
+                            <div class="preview cover">
+                                <div class="thumb-wrap">
+                                    <img src="{{\Storage::url($user->user_image)}}" class="img-thumbnail">
+                                    <div class="controls">
+                                        <a href="{{$user->user_image}}" class="btn btn-xs btn-default text-danger mx-1 shadow control"><i class="fa fa-lg fa-fw fa-trash"></i></a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="card">

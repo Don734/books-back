@@ -65,7 +65,7 @@ $confActive = [
                         </div>
                     </div>
                     <div class="card">
-                        <div class="card-header">Информация о продукте</div>
+                        <div class="card-header">Информация о категории</div>
                         <div class="card-body">
                             <x-adminlte-input-switch name="is_active" label="Статус" :config="$confActive" label-class="text-lightblue"></x-adminlte-input-switch>
                         </div>

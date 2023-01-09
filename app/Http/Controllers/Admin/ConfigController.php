@@ -13,7 +13,7 @@ class ConfigController extends Controller
 {
     public function index()
     {
-        $configs = Config::get();
+        $configs = Config::cursor();
         $sortedConfigs = [];
 
         foreach ($configs as $config) {
@@ -26,8 +26,9 @@ class ConfigController extends Controller
         return view('admin.pages.settings', ['configs' => $sortedConfigs]);
     }
 
-    public function update(ConfigRequest $request)
+    public function update(ConfigRequest $request, Config $config)
     {
-        dd($request->all());
+        $config->edit($request->all(), $request->user('web'));
+        return redirect()->route('configs');
     }
 }

@@ -18,11 +18,10 @@ class Config extends Model
 
     public function edit(array $req)
     {
-        $this->updateColumn($req, 'first_name');
-        $this->updateColumn($req, 'last_name');
-        // $this->status = filter_var($req['is_active'] ?? 'false', FILTER_VALIDATE_BOOLEAN);
-        $this->save();
-
-        $this->coverFile($req);
+        foreach ($req as $key => $value) {
+            $this->where('title', $key)->update([
+                'value' => $value
+            ]);
+        }
     }
 }

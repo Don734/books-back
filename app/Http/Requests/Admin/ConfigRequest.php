@@ -13,7 +13,7 @@ class ConfigRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,11 @@ class ConfigRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'TAB_NAME' => 'nullable|string',
+            'BODY_SCRIPT' => 'nullable|string',
+            'MAINTENANCE' => 'nullable|string',
+            'LOGO_IMAGE' => 'nullable|image',
+            'cover_delete' => 'nullable|string',
         ];
     }
 }

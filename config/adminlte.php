@@ -369,7 +369,7 @@ return [
         ],
         [
             'text' => 'settings',
-            'url'  => 'admin/settings',
+            'url'  => 'admin/configs',
             'icon' => 'fas fa-cog',
         ],
         ['header' => 'account_settings'],
